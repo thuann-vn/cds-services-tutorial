@@ -84,8 +84,17 @@ app.get('/cds-services', (request, response) => {
     description: 'Suggests prescribing Aspirin 81 MG Oral Tablets',
   };
 
+
+  // Example service to invoke the order-select hook
+  const appointmentBookExample = {
+    hook: 'appointment-book',
+    id: 'appointment-book-example',
+    title: 'Appoiment book hook',
+    description: 'VSee Clinic\'s Hook',
+  };
+
   const discoveryEndpointServices = {
-    services: [ patientViewExample, orderSelectExample ]
+    services: [ patientViewExample, orderSelectExample, appointmentBookExample ]
   };
   response.send(JSON.stringify(discoveryEndpointServices, null, 2));
 });
@@ -106,6 +115,40 @@ app.post('/cds-services/patient-view-example', (request, response) => {
       {
         // Use the patient's First and Last name
         summary: 'Now seeing: ' + patientResource.name[0].given[0] + ' ' + patientResource.name[0].family[0],
+        indicator: 'info',
+        source: {
+          label: 'VSee Call with patient',
+          url: 'https://thua-nguyen.vsee.io/cc/thua/u/telehealth'
+        },
+        links: [
+          {
+            label: 'Click here to start VSee Call',
+            url: 'https://thua-nguyen.vsee.io/cc/thua/u/telehealth',
+            type: 'absolute'
+          }
+        ]
+      }
+    ]
+  };
+  response.send(JSON.stringify(patientViewCard, null, 2));
+});
+
+
+
+/**
+ * Patient View Example Service:
+ * - Handles POST requests to our patient-view-example endpoint
+ * - This function should respond with an array of card(s) in JSON format for the patient-view hook
+ *
+ * - Service purpose: Display a patient's first and last name, with a link to the CDS Hooks web page
+ */
+app.post('/cds-services/order-select-example', (request, response) => {
+  console.log(request.body);
+  const patientViewCard = {
+    cards: [
+      {
+        // Use the patient's First and Last name
+        summary: 'VSEE CLINIC',
         indicator: 'info',
         source: {
           label: 'VSee Call with patient',
