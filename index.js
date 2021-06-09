@@ -108,13 +108,13 @@ app.post('/cds-services/patient-view-example', (request, response) => {
         summary: 'Now seeing: ' + patientResource.name[0].given[0] + ' ' + patientResource.name[0].family[0],
         indicator: 'info',
         source: {
-          label: 'CDS Service Tutorial',
-          url: 'https://github.com/cerner/cds-services-tutorial/wiki/Patient-View-Service'
+          label: 'VSee Call with patient',
+          url: 'https://thua-nguyen.vsee.io/cc/thua/u/telehealth'
         },
         links: [
           {
-            label: 'Learn more about CDS Hooks',
-            url: 'https://cds-hooks.org',
+            label: 'Click here to start VSee Call',
+            url: 'https://thua-nguyen.vsee.io/cc/thua/u/telehealth',
             type: 'absolute'
           }
         ]
