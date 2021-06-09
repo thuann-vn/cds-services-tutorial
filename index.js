@@ -142,7 +142,7 @@ app.post('/cds-services/patient-view-example', (request, response) => {
  *
  * - Service purpose: Display a patient's first and last name, with a link to the CDS Hooks web page
  */
-app.post('/cds-services/order-select-example', (request, response) => {
+app.post('/cds-services/appointment-book-example', (request, response) => {
   console.log(request.body);
   const patientViewCard = {
     cards: [
