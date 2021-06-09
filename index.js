@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const PORT = process.env.PORT || 5000
 
 // This is necessary middleware to parse JSON into the incoming request body for POST requests
 app.use(bodyParser.json());
@@ -216,4 +217,4 @@ function createMedicationResponseCard(context) {
 }
 
 // Here is where we define the port for the localhost server to setup
-app.listen(3000);
+app.listen(PORT);
